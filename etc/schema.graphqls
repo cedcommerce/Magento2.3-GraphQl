@@ -1,0 +1,36 @@
+# Copyright © Magento, Inc. All rights reserved.
+# See COPYING.txt for license details.
+
+type Query {
+    book (
+        id: Int @doc(description: "Id of the book")
+    ): Book @resolver(class: "Ced\\GraphQl\\Model\\Resolver\\Book") @doc(description: "This Will Return Query of the book")
+}
+
+type Book @doc(description: "Defines All data of book") {
+    book_name: String @doc(description: "Name of Book")
+    isbn_no: String @doc(description: "ISBN no of book")
+    author: Int @doc(description: "author id of book")
+    publish_date: String @doc(description: "Publish Date of book")
+    language:String @doc(description: "Language of Book")
+    mrp: Float @doc(description: "Max Price of Book")
+    authorData:[Author] @doc(description: "Array of Author")
+   
+}
+
+type Author @doc(description: "This will define author details") {
+    author_name: String @doc(description: "Display Name of Author")
+    author_email: String @doc(description: "Display Email of Author")
+    affliation: String @doc(description: "Display Affliation of Author")
+    age: String @doc(description: "Display age of Author")
+}
+
+type Mutation {
+    createAuthor(author_name: String!,author_email: String!, age: Int!,affliation: String!): AuthorCreate @resolver(class: "\\Ced\\GraphQl\\Model\\Resolver\\Author\\CreateAuthor") @doc(description:"Create Author and returns its Id and corresponding message") 
+}
+
+type AuthorCreate {
+    message: String @doc(description: "Success or error Message")
+    id: Int @doc(description: "The author id")  
+}
+
