@@ -14,7 +14,8 @@ Mutations
 
 Mutations are used to perform the Create Update operation in GraphQl.It is similar to POST and PUT in REST API.
 
-These are the basic approaches which we are going to use. If you want to learn more about GraphQl then you can visit this link
+These are the basic approaches which we are going to use. If you want to learn more about GraphQl then you can visit this link 
+(https://graphql.org/learn/)
 
 
-We have explained Implementation of GraphQl in Magento2.3. We assume that you all know how to create the module in Magento 2, so we will not discuss it here. However, if you do not know then don’t worry, you can check this link to understand the basic magento2 flow, and this link to understand the code structure of magento2 and finally this link to know how to create a basic hello world module in magento2.
+We have explained Implementation of GraphQl in Magento2.3. We assume that you all know how to create the module in Magento 2, so we will not discuss it here. However, if you do not know then don’t worry, you can check this link(https://cedcommerce.com/blog/magento-2-0-architecture/) to understand the basic magento2 flow, and this link(https://cedcommerce.com/blog/magento-2-0-architecture/) to understand the code structure of magento2 and finally this link(https://cedcommerce.com/blog/hello-world-module/) to know how to create a basic hello world module in magento2.
