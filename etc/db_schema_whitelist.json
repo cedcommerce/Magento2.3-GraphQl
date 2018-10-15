@@ -1,0 +1,28 @@
+{
+    "books_data": {
+        "column": {
+            "id": true,
+            "book_name": true,
+            "author": true,
+            "isbn_no": true,
+            "publish_date": true,
+            "language": true,
+            "mrp": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "author_data": {
+        "column": {
+            "id": true,
+            "author_name": true,
+            "author_email": true,
+            "affliation": true,
+            "age": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}
