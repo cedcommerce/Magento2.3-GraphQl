@@ -22,14 +22,14 @@
     <table name="books_data" resource="default" engine="innodb" comment="Book Table">
         <column xsi:type="smallint" name="id" padding="6" unsigned="false" nullable="false" identity="true" comment="BOOK ID"/>
         <column xsi:type="varchar" name="book_name" nullable="false" length="255" comment="Book Name"/>
-        <column xsi:type="int" name="author" unsigned="true" nullable="true" identity="false" default="" comment="Author"/>
+        <column xsi:type="int" name="author" unsigned="true" nullable="true" identity="false" comment="Author"/>
         <column xsi:type="varchar" name="isbn_no" nullable="true" comment="ISBN No"/>
         <column xsi:type="timestamp" name="publish_date" on_update="false" nullable="false" default="CURRENT_TIMESTAMP"
                 comment="Publish Date"/>
       <column xsi:type="varchar" name="language" nullable="true" comment="Language"/>
          <column xsi:type="decimal" name="mrp" scale="4" precision="12" unsigned="false" nullable="false"
                 default="0" comment="MRP"/>
-        <constraint xsi:type="primary" name="PRIMARY">
+        <constraint xsi:type="primary" referenceId="PRIMARY">
             <column name="id"/>
         </constraint>
     </table>
@@ -39,8 +39,8 @@
         <column xsi:type="varchar" name="author_name" nullable="false" length="255" comment="Author Name"/>
         <column xsi:type="varchar" name="author_email" nullable="false" length="255" comment="Author Email"/>
         <column xsi:type="varchar" name="affliation" nullable="false" length="255" comment="Affliation"/>
-        <column xsi:type="int" name="age" unsigned="true" nullable="true" identity="false" default="" comment="Age"/>
-        <constraint xsi:type="primary" name="PRIMARY">
+        <column xsi:type="int" name="age" unsigned="true" nullable="true" identity="false" comment="Age"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
             <column name="id"/>
         </constraint>
     </table>
