@@ -56,6 +56,26 @@ class Save extends \Magento\Backend\App\Action
         return $this->_authorization->isAllowed('Ced_Author::save');
     }
 
+
+    /**
+     * Filter request data
+     *
+     * @deprecated 101.0.8
+     * @param array $rawData
+     * @return array
+     */
+    protected function _filterPostData(array $rawData)
+    {
+        $data = $rawData;
+        if (isset($data['logo'][0]['name'])) {
+            $data['logo'] = $data['logo'][0]['name'];
+        } else {
+            $data['logo'] = '';
+        }
+            
+        return $data;
+    }
+
     /**
      * Save action
      *
@@ -63,8 +83,7 @@ class Save extends \Magento\Backend\App\Action
      */
     public function execute()
     {
-        $data = $this->getRequest()->getPostValue();
-
+        $data = $this->_filterPostData($this->getRequest()->getPostValue());
         /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
         $resultRedirect = $this->resultRedirectFactory->create();
         

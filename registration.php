@@ -13,7 +13,7 @@
   * @package   Ced_GraphQl
   * @author    CedCommerce Core Team <connect@cedcommerce.com >
   * @copyright Copyright CEDCOMMERCE (http://cedcommerce.com/)
-  * @license      http://cedcommerce.com/license-agreement.txt
+  * @license      https://cedcommerce.com/license-agreement.txt
   */
 
 

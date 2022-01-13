@@ -18,34 +18,43 @@
   */
  -->
  <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd"> 
- 	<type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
-        <arguments>
-            <argument name="collections" xsi:type="array">
-                <item name="book_grid_data_source" xsi:type="string">Ced\GraphQl\Model\ResourceModel\Book\Collection</item>
-            </argument>
-        </arguments>
-    </type>
- 
- <virtualType name="Ced\GraphQl\Model\ResourceModel\Book\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
-        <arguments>
-            <argument name="mainTable" xsi:type="string">books_data</argument>
-            <argument name="resourceModel" xsi:type="string">Ced\GraphQl\Model\ResourceModel\Book</argument>
-        </arguments>
- </virtualType>
- 
+
   <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
         <arguments>
             <argument name="collections" xsi:type="array">
-                <item name="author_grid_data_source" xsi:type="string">Ced\GraphQl\Model\ResourceModel\Author\Collection</item>
+                <item name="author_grid_data_source" xsi:type="string">Ced\GraphQl\Model\ResourceModel\Author\Grid\Collection</item>
             </argument>
         </arguments>
     </type>
- 
- <virtualType name="Ced\GraphQl\Model\ResourceModel\Author\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
         <arguments>
-            <argument name="mainTable" xsi:type="string">author_data</argument>
-            <argument name="resourceModel" xsi:type="string">Ced\GraphQl\Model\ResourceModel\Author</argument>
+            <argument name="collections" xsi:type="array">
+                <item name="book_grid_data_source" xsi:type="string">Ced\GraphQl\Model\ResourceModel\Book\Grid\Collection</item>
+            </argument>
         </arguments>
- </virtualType>
- 
+    </type>
+    <virtualType name="Ced\GraphQl\AuthorImageUpload" type="Ced\GraphQl\Model\ImageUploader">
+        <arguments>
+            <argument name="baseTmpPath" xsi:type="string">author/tmp/images</argument>
+            <argument name="basePath" xsi:type="string">author/image</argument>
+            <argument name="allowedExtensions" xsi:type="array">
+                <item name="jpg" xsi:type="string">jpg</item>
+                <item name="jpeg" xsi:type="string">jpeg</item>
+                <item name="gif" xsi:type="string">gif</item>
+                <item name="png" xsi:type="string">png</item>
+            </argument>
+            <argument name="allowedMimeTypes" xsi:type="array">
+                <item name="jpg" xsi:type="string">image/jpg</item>
+                <item name="jpeg" xsi:type="string">image/jpeg</item>
+                <item name="gif" xsi:type="string">image/gif</item>
+                <item name="png" xsi:type="string">image/png</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Ced\GraphQl\Controller\Adminhtml\Author\Upload">
+        <arguments>
+            <argument name="imageUploader" xsi:type="object">Ced\GraphQl\AuthorImageUpload</argument>
+        </arguments>
+    </type>
 </config>

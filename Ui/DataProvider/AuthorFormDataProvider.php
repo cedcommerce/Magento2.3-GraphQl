@@ -17,6 +17,9 @@
   */
 namespace Ced\GraphQl\Ui\DataProvider;
 use Ced\GraphQl\Model\ResourceModel\Author\CollectionFactory;
+use Magento\Framework\App\ObjectManager;
+use Ced\GraphQl\Model\ImageProcessing\FileInfo;
+use Ced\GraphQl\Model\ImageProcessing\Image;
 /**
  * Class AuthorFormDataProvider
  * @package Ced\GraphQl\Ui\DataProvider
@@ -43,10 +46,14 @@ class AuthorFormDataProvider extends \Magento\Ui\DataProvider\AbstractDataProvid
     		$requestFieldName,
     		CollectionFactory $collectionFactory,
     		array $meta = [],
-    		array $data = []
+    		array $data = [],
+        FileInfo $fileInfo = null,
+        Image $authorImage = null
     ) {
     	$this->collection = $collectionFactory->create();
     	parent::__construct($name, $primaryFieldName, $requestFieldName, $meta, $data);
+      $this->fileInfo = $fileInfo ?? ObjectManager::getInstance()->get(FileInfo::class);
+      $this->authorImage = $authorImage ?? ObjectManager::getInstance()->get(Image::class);
     }
 
     /**
@@ -59,9 +66,34 @@ class AuthorFormDataProvider extends \Magento\Ui\DataProvider\AbstractDataProvid
     	}
     	$items = $this->collection->getItems();
     	foreach ($items as $author) {
-    		$this->_loadedData[$author->getId()] = $author->getData();
+    		$this->_loadedData[$author->getId()] = $this->convertValues($author);
     	}
     	return $this->_loadedData;
+    }
+
+    /**
+     * Converts image data to acceptable for rendering format
+     *
+     * @param Author $author
+     * @param array $authorData
+     * @return array
+     */
+    private function convertValues($author): array
+    {
+        $authorData = $author->getData();
+        $fileName = $author->getLogo();
+        unset($authorData['logo']);
+            
+            if($fileName && $this->fileInfo->isExist($fileName)) {
+              $stat = $this->fileInfo->getStat($fileName);
+              $mime = $this->fileInfo->getMimeType($fileName);
+                // phpcs:ignore Magento2.Functions.DiscouragedFunction
+              $authorData['logo'][0]['name'] = basename($fileName);
+              $authorData['logo'][0]['url'] = $this->authorImage->getUrl($fileName);
+              $authorData['logo'][0]['size'] = $stat['size'];
+              $authorData['logo'][0]['type'] = $mime;
+            }
+        return $authorData;
     }
 
 }

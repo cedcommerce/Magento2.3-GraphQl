@@ -39,6 +39,7 @@
         <column xsi:type="varchar" name="author_name" nullable="false" length="255" comment="Author Name"/>
         <column xsi:type="varchar" name="author_email" nullable="false" length="255" comment="Author Email"/>
         <column xsi:type="varchar" name="affliation" nullable="false" length="255" comment="Affliation"/>
+        <column xsi:type="varchar" name="logo" nullable="false" length="255" comment="Logo Image"/>
         <column xsi:type="int" name="age" unsigned="true" nullable="true" identity="false" comment="Age"/>
         <constraint xsi:type="primary" referenceId="PRIMARY">
             <column name="id"/>
