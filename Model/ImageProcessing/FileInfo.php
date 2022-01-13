@@ -181,8 +181,6 @@ class FileInfo
 
         $mediaDirectoryRelativeSubpath = $this->getMediaDirectoryPathRelativeToBaseDirectoryPath($filePath);
         $isFileNameBeginsWithMediaDirectoryPath = $this->isBeginsWithMediaDirectoryPath($fileName);
-
-        // if the file is not using a relative path, it resides in the catalog/category media directory
         $fileIsInCategoryMediaDir = !$isFileNameBeginsWithMediaDirectoryPath;
 
         if ($fileIsInCategoryMediaDir) {
