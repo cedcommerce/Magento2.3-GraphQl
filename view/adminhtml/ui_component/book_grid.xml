@@ -41,14 +41,14 @@
         <settings>
             <updateUrl path="mui/index/render"/>
             <storageConfig>
-         <param name="indexField" xsi:type="string">alert_stock_id</param>
+         <param name="indexField" xsi:type="string">id</param>
       </storageConfig>
         </settings>
         <aclResource>Ced_GraphQl::graphql</aclResource>
          <dataProvider class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider" name="book_grid_data_source">
             <settings>
-                <requestFieldName>alert_stock_id</requestFieldName>
-                <primaryFieldName>main_table.alert_stock_id</primaryFieldName>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>main_table.id</primaryFieldName>
             </settings>
         </dataProvider>
     </dataSource>
