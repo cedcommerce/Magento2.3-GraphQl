@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0"?>
 <!--
 /**
  * CedCommerce
@@ -8,12 +8,12 @@
   * This source file is subject to the End User License Agreement (EULA)
   * that is bundled with this package in the file LICENSE.txt.
   * It is also available through the world-wide-web at this URL:
-  * https://cedcommerce.com/license-agreement.txt
+  * http://cedcommerce.com/license-agreement.txt
   *
   * @category  Ced
   * @package   Ced_GraphQl
   * @author    CedCommerce Core Team <connect@cedcommerce.com >
-  * @copyright Copyright CEDCOMMERCE (https://cedcommerce.com/)
+  * @copyright Copyright CEDCOMMERCE (http://cedcommerce.com/)
   * @license      https://cedcommerce.com/license-agreement.txt
   */
 -->
@@ -21,149 +21,120 @@
     <argument name="data" xsi:type="array">
         <item name="js_config" xsi:type="array">
             <item name="provider" xsi:type="string">book_form.book_form_data_source</item>
-            <item name="deps" xsi:type="string">book_form.book_form_data_source</item>
         </item>
-        <item name="label" xsi:type="string" translate="true">Book Details Form</item>
-
-        <item name="buttons" xsi:type="array">
-            <item name="back" xsi:type="string">Ced\GraphQl\Block\Adminhtml\Edit\Book\BackButton</item>
-            <item name="delete" xsi:type="string">Ced\GraphQl\Block\Adminhtml\Edit\Book\DeleteButton</item>
-            <item name="reset" xsi:type="string">Ced\GraphQl\Block\Adminhtml\Edit\Book\ResetButton</item>
-            <item name="save" xsi:type="string">Ced\GraphQl\Block\Adminhtml\Edit\Book\SaveButton</item>
-        </item>
-        <item name="config" xsi:type="array">
-            <item name="dataScope" xsi:type="string">data</item>
-            <item name="namespace" xsi:type="string">book_form</item>
-        </item>
-         <item name="template" xsi:type="string">templates/form/collapsible</item>
+        <item name="label" xsi:type="string" translate="true">Theme Information</item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
     </argument>
-
+    <settings>
+        <buttons>
+            <button name="save" class="Ced\GraphQl\Block\Adminhtml\Edit\Book\SaveButton"/>
+            <button name="back" class="Ced\GraphQl\Block\Adminhtml\Edit\Book\BackButton"/>
+            <button name="delete" class="Ced\GraphQl\Block\Adminhtml\Edit\Book\DeleteButton"/>
+        </buttons>
+        <namespace>book_form</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>book_form.book_form_data_source</dep>
+        </deps>
+    </settings>
     <dataSource name="book_form_data_source">
-        <argument name="dataProvider" xsi:type="configurableObject">
-            <argument name="class" xsi:type="string">Ced\GraphQl\Ui\DataProvider\BookFormDataProvider</argument>
-            <argument name="name" xsi:type="string">book_form_data_source</argument>
-            <argument name="primaryFieldName" xsi:type="string">id</argument>
-            <argument name="requestFieldName" xsi:type="string">id</argument>
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="submit_url" xsi:type="url" path="cedgraphql/book/save"/>
-                </item>
-            </argument>
-        </argument>
         <argument name="data" xsi:type="array">
             <item name="js_config" xsi:type="array">
                 <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
             </item>
         </argument>
+        <settings>
+            <submitUrl path="cedgraphql/book/save"/>
+        </settings>
+        <dataProvider class="Ced\GraphQl\Ui\DataProvider\BookFormDataProvider" name="book_form_data_source">
+            <settings>
+                <clientConfig>
+                    <param name="validateBeforeSave" xsi:type="boolean">false</param>
+                </clientConfig>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>id</primaryFieldName>
+            </settings>
+        </dataProvider>
     </dataSource>
-
-    <fieldset name="book">
-        <argument name="data" xsi:type="array">
-            <item name="config" xsi:type="array">
-                <item name="label" xsi:type="string" translate="true">Book Form Details</item>
-            </item>
-        </argument>
-        
-		<field name="id">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="visible" xsi:type="boolean">false</item>
-                    <item name="dataType" xsi:type="string">text</item>
-                    <item name="formElement" xsi:type="string">input</item>
-                    <item name="source" xsi:type="string">book</item>
-                </item>
-            </argument>
-		</field>
-        <field name="book_name">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="label" xsi:type="string">Book Name</item>
-                    <item name="visible" xsi:type="boolean">true</item>
-                    <item name="dataType" xsi:type="string">text</item>
-                    <item name="formElement" xsi:type="string">input</item>
-                    <item name="source" xsi:type="string">book</item>
-                    <item name="validation" xsi:type="array">
-                        <item name="required-entry" xsi:type="boolean">true</item>
-                    </item>
-                </item>
-            </argument>
-        </field>
-        <field name="isbn_no">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="label" xsi:type="string">ISBN No</item>
-                    <item name="visible" xsi:type="boolean">true</item>
-                    <item name="dataType" xsi:type="string">text</item>
-                    <item name="formElement" xsi:type="string">input</item>
-                    <item name="source" xsi:type="string">book</item>
-                    <item name="validation" xsi:type="array">
-                        <item name="required-entry" xsi:type="boolean">true</item>
-                    </item>
-                </item>
-            </argument>
-        </field>
-        <field name="author">
-            <argument name="data" xsi:type="array">
-                <item name="options" xsi:type="object">Ced\GraphQl\Model\Source\Author</item>
-                <item name="config" xsi:type="array">
-                    <item name="visible" xsi:type="boolean">true</item>
-                    <item name="dataType" xsi:type="string">text</item>
-                    <item name="label" xsi:type="string">Author Name</item>
-                    <item name="formElement" xsi:type="string">select</item>
-                    <item name="source" xsi:type="string">book</item>
-                    <item name="validation" xsi:type="array">
-                        <item name="required-entry" xsi:type="boolean">true</item>
-                    </item>
-                </item>
-            </argument>
-        </field>
-        <field name="publish_date">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="visible" xsi:type="boolean">true</item>
-                    <item name="dataType" xsi:type="string">text</item>
-                    <item name="label" xsi:type="string">Publish Date</item>
-                    <item name="formElement" xsi:type="string">date</item>
-                    <item name="source" xsi:type="string">book</item>
-                    <item name="validation" xsi:type="array">
-                        <item name="required-entry" xsi:type="boolean">true</item>
-                    </item>
-                    <item name="options" xsi:type="array">
-                        <item name="dateFormat" xsi:type="string">yyyy-MM-dd</item>
-                        <!-- <item name="timeFormat" xsi:type="string">hh:mm:ss</item> -->
-                        <item name="showsTime" xsi:type="boolean">true</item>
-                    </item>
-                </item>
-            </argument>
-        </field>
-        <field name="language">
-            <argument name="data" xsi:type="array">
-                <item name="options" xsi:type="object">Ced\GraphQl\Model\Source\Language</item>
-                <item name="config" xsi:type="array">
-                    <item name="visible" xsi:type="boolean">true</item>
-                    <item name="dataType" xsi:type="string">text</item>
-                    <item name="label" xsi:type="string">Publish Langusge</item>
-                    <item name="formElement" xsi:type="string">select</item>
-                    <item name="source" xsi:type="string">book</item>
-                    <item name="validation" xsi:type="array">
-                        <item name="required-entry" xsi:type="boolean">true</item>
-                    </item>
-                </item>
-            </argument>
-        </field>
-        <field name="mrp">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="dataType" xsi:type="string">text</item>
-                    <item name="label" xsi:type="string">Mrp Of Book</item>
-                    <item name="formElement" xsi:type="string">input</item>
-                    <item name="source" xsi:type="string">book</item>
-                    <item name="validation" xsi:type="array">
-                        <item name="required-entry" xsi:type="boolean">true</item>
-                        <item name="validate-not-negative-number" xsi:type="boolean">true</item>
-                    </item>
-                </item>
-            </argument>
-        </field>
+    <fieldset name="author_data" sortOrder="30">
+        <settings>
+            <label translate="true">Book Form Details</label>
+        </settings>
+            <field name="book_name" formElement="input">
+                <settings>
+                  <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                  </validation>
+                  <dataType>text</dataType>
+                  <label translate="true">Book Name</label>
+                  <dataScope>book_name</dataScope>
+                </settings>
+            </field>
+            <field name="author" formElement="select">
+                <settings>
+                    <dataType>text</dataType>
+                    <label translate="true">Author</label>
+                    <dataScope>author</dataScope>
+                    <validation>
+                        <rule name="required-entry" xsi:type="boolean">true</rule>
+                  </validation>
+                </settings>
+                <formElements>
+                    <select>
+                        <settings>
+                            <options class="Ced\GraphQl\Model\Source\Author"/>
+                        </settings>
+                    </select>
+                </formElements>
+            </field>
+            <field name="publish_date" formElement="date">
+                <settings>
+                    <validation>
+                        <rule name="required-entry" xsi:type="boolean">true</rule>
+                        <rule name="validate-date" xsi:type="boolean">true</rule>
+                    </validation>
+                    <dataType>text</dataType>
+                    <label translate="true">Publish Date</label>
+                    <visible>true</visible>
+                    <dataScope>publish_date</dataScope>
+                </settings>
+            </field>
+            <field name="language" formElement="select">
+                <settings>
+                    <dataType>text</dataType>
+                    <label translate="true">Language</label>
+                    <dataScope>language</dataScope>
+                    <validation>
+                        <rule name="required-entry" xsi:type="boolean">true</rule>
+                  </validation>
+                </settings>
+                <formElements>
+                    <select>
+                        <settings>
+                            <options class="Ced\GraphQl\Model\Source\Language"/>
+                        </settings>
+                    </select>
+                </formElements>
+            </field>
+            <field name="isbn_no" formElement="input">
+                <settings>
+                  <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                  </validation>
+                  <dataType>text</dataType>
+                  <label translate="true">ISBN No</label>
+                  <dataScope>isbn_no</dataScope>
+                </settings>
+            </field>
+           <field name="mrp" formElement="input">
+                <settings>
+                  <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                  </validation>
+                  <dataType>text</dataType>
+                  <label translate="true">Mrp Of Book</label>
+                  <dataScope>mrp</dataScope>
+                </settings>
+            </field>
     </fieldset>
 </form>

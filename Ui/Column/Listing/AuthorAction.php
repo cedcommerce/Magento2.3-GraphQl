@@ -60,11 +60,11 @@ class AuthorAction extends Column
     {
         if (isset($dataSource['data']['items'])) {
             $storeId = $this->context->getFilterParam('store_id');
-
+            $editUrlPath = $this->getData('config/editUrlPath') ?: '#';
             foreach ($dataSource['data']['items'] as &$item) {
                 $item[$this->getData('name')]['edit'] = [
                     'href' => $this->urlBuilder->getUrl(
-                        'cedgraphql/author/edit',
+                        $editUrlPath,
                         ['id' => $item['id'], 'store' => $storeId]
                     ),
                     'label' => __('Edit'),

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0"?>
 <!--
 /**
  * CedCommerce
@@ -19,8 +19,8 @@
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
     <menu>
-        <add id="Ced_GraphQl::graphql" title="Books And Authors" module="Ced_GraphQl" sortOrder="20"  resource="Ced_GraphQl::graphql"/>
-        <add id="Ced_GraphQl::author" title="Manage Authors" module="Ced_GraphQl" sortOrder="10" parent="Ced_GraphQl::graphql" action="cedgraphql/author/index" resource="Ced_GraphQl::author"/>
-        <add id="Ced_GraphQl::book" title="Manage Books" module="Ced_GraphQl" sortOrder="20" parent="Ced_GraphQl::graphql" action="cedgraphql/book/index" resource="Ced_GraphQl::book"/>
+        <add id="Ced_GraphQl::graphql" title="Books And Authors" translate="title" module="Ced_GraphQl" sortOrder="20"  resource="Ced_GraphQl::graphql"/>
+        <add id="Ced_GraphQl::author" title="Manage Authors" translate="title" module="Ced_GraphQl" sortOrder="10" parent="Ced_GraphQl::graphql" action="cedgraphql/author/index" resource="Ced_GraphQl::author"/>
+        <add id="Ced_GraphQl::book" title="Manage Books" translate="title" module="Ced_GraphQl" sortOrder="20" parent="Ced_GraphQl::graphql" action="cedgraphql/book/index" resource="Ced_GraphQl::book"/>
     </menu>
 </config>
